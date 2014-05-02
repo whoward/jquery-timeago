@@ -65,7 +65,7 @@
       }
     },
 
-    inWords: function(distanceMillis) {
+    inWords: function(distanceMillis, el) {
       if(!this.settings.allowPast && ! this.settings.allowFuture) {
           throw 'timeago allowPast and allowFuture settings can not both be set to false.';
       }
@@ -180,7 +180,7 @@
 
     if (!isNaN(data.datetime)) {
       if ( $s.cutoff == 0 || Math.abs(distance(data.datetime)) < $s.cutoff) {
-        $(this).text(inWords(data.datetime));
+        $(this).text(inWords(data.datetime, this));
       }
     }
     return this;
@@ -200,8 +200,8 @@
     return element.data("timeago");
   }
 
-  function inWords(date) {
-    return $t.inWords(distance(date));
+  function inWords(date, el) {
+    return $t.inWords(distance(date), el);
   }
 
   function distance(date) {
